@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attendance Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <header>
+    <h1>Attendance Calculator</h1>
+    <p class="subtitle">Set up once. Calculate everything later.</p>
+  </header>
+
+  <!-- STEP 1: SEMESTER SETUP -->
+  <section class="card" id="semesterSection">
+  <div class="card-content">
+
+    <h2>
+      Semester Setup
+    </h2>
+
+    <div class="grid-2">
+      <div>
+        <label>Start Date</label>
+        <input type="date" id="startDate">
+      </div>
+      <div>
+        <label>End Date</label>
+        <input type="date" id="endDate">
+      </div>
+    </div>
+
+    <div class="days-select">
+      <label><input type="checkbox" data-day="1" checked> Mon</label>
+      <label><input type="checkbox" data-day="2" checked> Tue</label>
+      <label><input type="checkbox" data-day="3" checked> Wed</label>
+      <label><input type="checkbox" data-day="4" checked> Thu</label>
+      <label><input type="checkbox" data-day="5" checked> Fri</label>
+      <label><input type="checkbox" data-day="6"> Sat</label>
+      <label><input type="checkbox" data-day="0"> Sun</label>
+    </div>
+
+    <h3>Inapplicable Dates</h3>
+    <p class="hint">Click dates to mark holidays or exam days.</p>
+    <div id="calendar"></div>
+
+    <button id="confirmSemester">Confirm Semester</button>
+        <p class="locked-msg hidden">🔒 Semester locked</p>
+  </div>
+
+  <button class="edit-btn hidden" onclick="unlockSemester()">
+    Edit ✐
+  </button>
+</section>
+
+
+  <!-- SUBJECT SETUP -->
+<section class="card hidden" id="subjectSetup">
+  <div class="card-content">
+
+    <h2>Enter what classes do you have</h2>
+
+    <p class="hint">
+      Tip: Short names work best (e.g. <strong>DS</strong>, <strong>OS</strong>, <strong>DBMS</strong>)
+    </p>
+
+    <div id="subjectsContainer"></div>
+
+    <button id="addSubject" class="secondary">+ Add class</button>
+    <button id="confirmSubjects">Confirm subjects</button>
+
+    <p class="locked-msg hidden">🔒 Subjects locked</p>
+  </div>
+
+  <button class="edit-btn hidden" onclick="unlockSubjects()">
+    Edit ✐
+  </button>
+</section>
+
+
+
+  <!-- STEP 2: TIMETABLE -->
+<section class="card hidden" id="timetableSection">
+  <div class="card-content">
+
+    <h2>Build Your Timetable</h2>
+
+    <div id="subjectPillBar" class="pill-bar"></div>
+    <div id="dayCards" class="day-cards"></div>
+
+    <button id="confirmTimetable">Confirm timetable</button>
+    <p class="locked-msg hidden">🔒 Timetable locked</p>
+  </div>
+
+  <button class="edit-btn hidden" onclick="unlockTimetable()">
+    Edit ✐
+  </button>
+</section>
+
+
+
+  <!-- ATTENDANCE REQUIREMENTS -->
+  <section class="card hidden" id="attendanceSection">
+    <h2>Attendance Requirements</h2>
+
+    <div class="grid-2">
+      <div>
+        <label>Desired Attendance (%)</label>
+        <input type="number" id="desiredAttendance" value="75">
+      </div>
+
+      <div>
+        <label>Required Attendance (%)</label>
+        <input type="number" id="requiredAttendance" value="75">
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <label>
+        <input type="checkbox" id="perSubjectToggle" checked>
+        Calculate per subject
+      </label>
+
+      <label>
+        <input type="checkbox" id="totalToggle" checked>
+        Calculate total
+      </label>
+    </div>
+    <hr style="margin:20px 0; opacity:0.2">
+
+<h3>Class Adjustments</h3>
+<p class="hint">
+  Add extra classes or remove cancelled ones.
+</p>
+
+<div id="adjustmentsContainer"></div>
+
+  </section>
+
+  <!-- CALCULATE -->
+  <section class="card hidden" id="calculateSection">
+    <button id="calculateAttendance" class="cta">
+      CALCULATE ATTENDANCE
+    </button>
+  </section>
+
+  <!-- REPORT -->
+  <section class="card hidden" id="reportSection">
+    <h2>Attendance Report</h2>
+    <div id="reportGrid"></div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
