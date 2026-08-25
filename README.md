@@ -1,93 +1,66 @@
-# Attendance Calculator
+# Attendance Planner
 
-A semester attendance planning tool with two implementations:
+This project started as a practical problem: how do you calculate how many classes you actually need to attend to meet a target percentage?
 
-- Web app: interactive setup and attendance target calculator
-- Python CLI: step-by-step attendance planner from terminal input
+I built both a browser version and a Python version because the same logic was useful in different contexts. It turned into a small project about modeling real semester constraints instead of just doing a simple percentage calculation.
 
-## What this project does
+## What I was trying to learn
 
-This project helps you estimate how many classes you need to attend based on:
+- how to model a semester with working days and exceptions
+- how to account for holidays, exam periods, and no-class days
+- how small rules about weekly structure change the final numbers
+- how to turn a practical problem into a tool that is understandable and usable
 
-- Semester start and end dates
-- Working days (Mon-Sun configurable)
-- Inapplicable dates (holidays, exam periods, no-class dates)
-- Subject list and weekly timetable
-- Required and desired attendance percentages
-- Optional class count adjustments (extra/cancelled classes)
+## What the project does
 
-## Implementations
+It helps estimate attendance requirements based on:
 
-### 1) Web app
+- semester dates
+- working days
+- subject schedules
+- target attendance percentages
+- extra or cancelled classes
 
-Files:
+## Why this project mattered
 
-- index.html
-- style.css
-- script.js
+The useful part was not the UI itself. It was the logic behind the planning.
 
-Key flow:
+A simple formula is easy to write. The hard part is making the model match the real structure of the semester, so that the numbers feel meaningful instead of theoretical.
 
-1. Lock semester dates and select active weekdays.
-2. Mark inapplicable dates on calendar.
-3. Add subjects.
-4. Build timetable by assigning subjects to each day.
-5. Set required and desired attendance percentages.
-6. Apply per-subject or total class adjustments.
-7. Generate attendance report.
+## What I changed while building it
 
-Output:
+I learned that the first version of the logic was too naive for real schedules. It treated the semester as a clean system when actual academic calendars are messy.
 
-- Subject-wise class totals
-- Required class count
-- Desired class count
-- Optional total-level summary
+That led to changes like:
 
-### 2) Python CLI
+- handling exceptions and skipped dates explicitly
+- making subject-wise logic more clear
+- separating total attendance goals from per-subject requirements
+- handling class adjustments more carefully
 
-File:
+## What I would improve next
 
-- attendance.py
-
-Key flow:
-
-1. Enter semester range.
-2. Choose weekend class policy.
-3. Enter exam periods and isolated holidays.
-4. Add subjects and weekly schedule.
-5. Enter attendance target.
-6. Optionally account for extra classes.
-7. Get per-subject attendance requirements.
+- better validation for edge cases
+- clearer saved-state behavior in the browser version
+- more test coverage for date logic and class count calculations
+- export support for easier reporting
 
 ## How to run
 
 ### Web app
 
-Open index.html in a browser.
-
-Optional local server (recommended):
-
-```powershell
+```bash
 python -m http.server 8000
 ```
 
-Then open http://localhost:8000.
+Then open the app in a browser.
 
 ### Python CLI
 
-```powershell
+```bash
 python attendance.py
 ```
 
-## Notes
+## Current takeaway
 
-- The web app is fully client-side and does not require a backend.
-- Data persistence is local browser storage (when enabled in script).
-- This repo is focused on planning and target estimation, not attendance tracking from institutional APIs.
-
-## Suggested next improvements
-
-- Fix and harden saved-state loading in script.js.
-- Add export (CSV/PDF) for reports.
-- Add unit tests for date filtering and count logic.
-- Add sample input datasets for quick demos.
+This is one of those practical projects that teaches you a lot about real-world modeling. It is small, but the process of turning a messy scheduling problem into a usable calculation tool was useful learning.
