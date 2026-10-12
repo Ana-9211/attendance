@@ -525,9 +525,10 @@ function saveState() {
 }
 
 function loadState() {
-  classAdjustments = data.classAdjustments || {};
   const data = JSON.parse(localStorage.getItem("attendanceApp"));
   if (!data) return;
+
+  classAdjustments = data.classAdjustments || {};
 
   startDate.value = data.startDate;
   endDate.value = data.endDate;
